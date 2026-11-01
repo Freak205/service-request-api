@@ -73,7 +73,7 @@ Invoke-RestMethod "$B/requests/1"
 # Change status: open -> in_progress -> resolved
 Invoke-RestMethod -Method Patch -Uri "$B/requests/1/status" -ContentType "application/json" -Body '{"status":"in_progress"}'
 
-# Rejected change (409): open -> resolved is not allowed
+# Rejected change (409): request 1 is now in_progress, so going back to open is not allowed
 try { Invoke-RestMethod -Method Patch -Uri "$B/requests/1/status" -ContentType "application/json" -Body '{"status":"open"}' } catch { $_.ErrorDetails.Message }
 
 # Summary report
